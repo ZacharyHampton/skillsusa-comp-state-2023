@@ -3,6 +3,7 @@ import argparse
 from encryption.encryption import encrypt, decrypt
 import logging
 import sys
+import re
 
 
 def main(args: list[str] | None = None) -> None:
@@ -35,6 +36,11 @@ def main(args: list[str] | None = None) -> None:
     args: Namespace = parser.parse_args(args)
     logger = logging.getLogger(__name__)
     logging.basicConfig(level=logging.INFO, format="%(message)s")
+
+    if args.number:
+        if len(args.number) != 4 or not re.match(r"\d{4}", args.number):
+            logger.fatal("Number is not a number, or is not 4 digits.")
+            sys.exit(0)
 
     match args.action:
         case "encrypt":
