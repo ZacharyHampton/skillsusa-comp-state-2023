@@ -2,7 +2,7 @@
 
 ## CLI
 ```
-usage: encryption [-h] [-a {encrypt,decrypt,clear,read}] -f FILE [-n NUMBER]
+usage: encryption [-h] [-a {encrypt,decrypt,clear,read}] [-f FILE] [-n NUMBER]
 
 A program to encrypt four-digit integers.
 
@@ -20,4 +20,5 @@ options:
 - Use the command `encryption` to run the software. 
 
 ## CLI Examples
-- ``
+- `encryption -n 1234 -a encrypt -f tests/logs.txt`
+- `encryption -n 0189 -a decrypt -f tests/logs.txt`

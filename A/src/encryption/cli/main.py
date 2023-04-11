@@ -22,7 +22,7 @@ def main(args: list[str] | None = None) -> None:
         "-f",
         "--file",
         type=argparse.FileType('r+'),
-        required=True
+        required=False
     )
 
     parser.add_argument(
@@ -42,6 +42,10 @@ def main(args: list[str] | None = None) -> None:
                 logger.fatal("Number is required for this action (encrypt).")
                 sys.exit(0)
 
+            if args.file is None:
+                logger.fatal("File is required for this action (encrypt).")
+                sys.exit(0)
+
             result = encrypt(args.number)
 
             logs = args.file
@@ -58,9 +62,17 @@ def main(args: list[str] | None = None) -> None:
             result = decrypt(args.number)
             logger.info(result)
         case "clear":
+            if args.file is None:
+                logger.fatal("File is required for this action (clear).")
+                sys.exit(0)
+
             with args.file as f:
                 f.truncate(0)
         case "read":
+            if args.file is None:
+                logger.fatal("File is required for this action (read).")
+                sys.exit(0)
+
             with args.file as f:
                 lines = f.readlines()
                 for number in lines:
