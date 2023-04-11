@@ -1,10 +1,11 @@
 from classes.school_class import SchoolClass
 import numpy as np
+import sys
 
 
 def calculate_overall_average(classes: list[SchoolClass]) -> float:
     #: Get the average for each class, then average those averages
-    return np.average([school_class.get_average() for school_class in classes])
+    return np.average([school_class.get_average() for school_class in classes if school_class.scores])
 
 
 def main():
@@ -15,6 +16,10 @@ def main():
     #: Get class names
     while (name := input("Please input the names for each class (input q to stop): ")) != "q":
         classes.append(SchoolClass(name=name))
+
+    if classes is None:
+        print("No classes were inputted, closing program.")
+        sys.exit(0)
 
     for school_class in classes:
         #: Get scores for class
@@ -40,7 +45,9 @@ def main():
 
     #: Print data for each class
     for school_class in classes:
-        print(school_class)
+        #: If a class does not have scores, it can be disregarded as junk.
+        if school_class.scores:
+            print(school_class)
 
 
 if __name__ == "__main__":
