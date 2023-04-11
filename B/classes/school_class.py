@@ -1,4 +1,16 @@
 import numpy as np
+from dataclasses import dataclass
+from rich.pretty import Pretty
+
+
+@dataclass
+class SchoolData:
+    """Dataclass for school statistics"""
+    name: str
+    scores: Pretty
+    current_avg: str
+    highest_score: str
+    lowest_score: str
 
 
 class SchoolClass:
@@ -7,18 +19,14 @@ class SchoolClass:
         self.name: str = name
         self.scores: list[float] = []
 
-    def __str__(self):
-        return """Class Name: {}
-All Scores Entered: {}
-Current Average: {}%
-Highest Score: {}%
-Lowest Score: {}%""".format(
-            self.name,
-            '\n'.join([str(score) + "%" for score in self.scores]),
-            int(self.get_average()),
-            np.max(self.scores),
-            np.min(self.scores)
+    def get_statistics(self):
+        return SchoolData(
+            name=self.name,
+            scores=Pretty([str(score) + "%" for score in self.scores]),
+            current_avg=str(int(self.get_average())) + "%",
+            highest_score=str(np.max(self.scores)) + "%",
+            lowest_score=str(np.min(self.scores)) + "%",
         )
 
     def get_average(self) -> float:
-        return np.average(self.scores)
+        return round(np.average(self.scores))
