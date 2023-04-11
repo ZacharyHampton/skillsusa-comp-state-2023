@@ -5,6 +5,7 @@ from rich.pretty import Pretty
 
 @dataclass
 class SchoolData:
+    """Dataclass for school statistics"""
     name: str
     scores: Pretty
     current_avg: str

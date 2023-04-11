@@ -10,7 +10,6 @@ from rich import box
 import dataclasses
 from contextlib import contextmanager
 import time
-import os
 
 
 def calculate_overall_average(classes: list[SchoolClass]) -> float:
@@ -85,7 +84,7 @@ def main():
             #: Add report card data to list
             table_data.append([getattr(stats, field.name) for field in dataclasses.fields(stats)])
 
-    #: Format report card
+    #: Format report card & generate report card
     with Live(table_centered, console=console, screen=False, refresh_per_second=20):
         with beat(10):
             table.title = "Report Card"
