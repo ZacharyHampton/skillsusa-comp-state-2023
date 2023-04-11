@@ -8,6 +8,7 @@ def _replace_step(number: str, is_decrypt: bool = False) -> str:
     """
 
     #: Replace each digit by the (sum of itself + 7) mod 10
+    #: If decrypting, do the opposite of adding seven, remove 3
     return "".join(
         [str((int(string_number) + (7 if not is_decrypt else 3)) % 10) for string_number in number]
     )

@@ -22,3 +22,9 @@ options:
 ## CLI Examples
 - `encryption -n 1234 -a encrypt -f tests/logs.txt`
 - `encryption -n 0189 -a decrypt -f tests/logs.txt`
+- `encryption -a read -f tests/logs.txt`
+- `encryption -a clear -f tests/logs.txt`
+
+## Features
+- Pytest Implementation (/tests)
+- Proper Python CLI

@@ -1,38 +1,17 @@
+from school_class import SchoolClass
 import numpy as np
 
 
-class Class:
-    def __init__(self, name: str):
-        self.name: str = name
-        self.scores: list[float] = []
-
-    def __str__(self):
-        return """Class Name: {}
-All Scores Entered: {}
-Current Average: {}%
-Highest Score: {}%
-Lowest Score: {}%""".format(
-            self.name,
-            '\n'.join([str(score) + "%" for score in self.scores]),
-            int(self.get_average()),
-            np.max(self.scores),
-            np.min(self.scores)
-        )
-
-    def get_average(self):
-        return np.average(self.scores)
-
-
-def calculate_overall_average(classes: list[Class]):
+def calculate_overall_average(classes: list[SchoolClass]):
     return np.average([school_class.get_average() for school_class in classes])
 
 
 def main():
     print("Hello user!")
 
-    classes: list[Class] = []
+    classes: list[SchoolClass] = []
     while (name := input("Please input the names for each class (input q to stop): ")) != "q":
-        classes.append(Class(name=name))
+        classes.append(SchoolClass(name=name))
 
     for school_class in classes:
         while (score := input("Please input a score for {} class (input q to stop): ".format(school_class.name))) != "q":
