@@ -9,12 +9,12 @@ def calculate_overall_average(classes: list[SchoolClass]) -> float:
 
 
 def main():
-    print("Hello user!")
+    print("Hello user! On any input, please input 'q' if you would like to exit the question.")
 
     classes: list[SchoolClass] = []
 
     #: Get class names
-    while (name := input("Please input the names for each class (input q to stop): ")) != "q":
+    while (name := input("Please input the names for each class: ")) != "q":
         classes.append(SchoolClass(name=name))
 
     if classes is None:
@@ -23,7 +23,7 @@ def main():
 
     for school_class in classes:
         #: Get scores for class
-        while (score := input("Please input a score for {} class (input q to stop): ".format(school_class.name))) != "q":
+        while (score := input("Please input a score for {} class: ".format(school_class.name))) != "q":
             #: Validate if score is a number
             try:
                 score = float(score)
