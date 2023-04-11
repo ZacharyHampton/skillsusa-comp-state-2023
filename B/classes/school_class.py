@@ -2,6 +2,7 @@ import numpy as np
 
 
 class SchoolClass:
+    """Holds information relating to a specific class."""
     def __init__(self, name: str):
         self.name: str = name
         self.scores: list[float] = []
@@ -19,5 +20,5 @@ Lowest Score: {}%""".format(
             np.min(self.scores)
         )
 
-    def get_average(self):
+    def get_average(self) -> float:
         return np.average(self.scores)
