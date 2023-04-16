@@ -6,3 +6,6 @@
 
 ## Python Version
 `Python 3.10`
+
+## Placement
+3rd
